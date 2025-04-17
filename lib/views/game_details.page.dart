@@ -4,7 +4,7 @@ import '../models/game.dart';
 class GameDetailsPage extends StatefulWidget {
   final Game game;
 
-  const GameDetailsPage({required this.game});
+  const GameDetailsPage({super.key, required this.game});
 
   @override
   State<GameDetailsPage> createState() => _GameDetailsPageState();
@@ -24,7 +24,15 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(widget.game.imageUrl),
+              child: Hero(
+                tag: widget.game.id,
+                child: Image.network(
+                  widget.game.imageUrl,
+                  width: double.infinity,
+                  height: 250,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             SizedBox(height: 16),
             Text(

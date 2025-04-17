@@ -6,14 +6,17 @@ void main() {
 }
 
 class GameCatalogApp extends StatelessWidget {
+  const GameCatalogApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Game Catalog',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.deepPurple,
-        scaffoldBackgroundColor: Color(0xFF1A1A1A),
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Color(0xFF121212),
+        cardColor: Color(0xFF2A2A2A),
+        primaryColor: Colors.deepPurple,
+        textTheme: TextTheme(bodyMedium: TextStyle(color: Colors.white70)),
       ),
       home: HomePage(),
     );

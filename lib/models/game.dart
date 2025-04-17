@@ -4,6 +4,7 @@ class Game {
   final String console;
   final String description;
   final String imageUrl;
+  final String subtitle;
 
   Game({
     required this.id,
@@ -11,5 +12,6 @@ class Game {
     required this.console,
     required this.description,
     required this.imageUrl,
+    required this.subtitle,
   });
 }
