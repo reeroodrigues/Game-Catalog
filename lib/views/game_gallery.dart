@@ -84,7 +84,7 @@ class _GameGalleryState extends State<GameGallery> {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 4,
-      shadowColor: Colors.deepPurple.withOpacity(0.2),
+      shadowColor: Colors.deepPurple,
       child: Column(
         children: [
           ClipRRect(

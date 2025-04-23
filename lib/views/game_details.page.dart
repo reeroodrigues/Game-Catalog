@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import '../models/game.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class GameDetailsPage extends StatefulWidget {
   final Game game;
+  final Function(String gameId, bool isFavorite)? onFavoriteChanged;
 
-  const GameDetailsPage({super.key, required this.game});
+  const GameDetailsPage({
+    super.key,
+    required this.game,
+    this.onFavoriteChanged,
+  });
 
   @override
   State<GameDetailsPage> createState() => _GameDetailsPageState();
@@ -26,8 +32,12 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
               borderRadius: BorderRadius.circular(12),
               child: Hero(
                 tag: widget.game.id,
-                child: Image.network(
-                  widget.game.imageUrl,
+                child: CachedNetworkImage(
+                  imageUrl: widget.game.imageUrl,
+                  placeholder:
+                      (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                   width: double.infinity,
                   height: 250,
                   fit: BoxFit.cover,
@@ -57,15 +67,6 @@ class _GameDetailsPageState extends State<GameDetailsPage> {
                       .toList(),
             ),
             SizedBox(height: 16),
-            ElevatedButton.icon(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Adicionado à lista de desejos!")),
-                );
-              },
-              icon: Icon(Icons.favorite_border),
-              label: Text("Adicionar à lista de desejos"),
-            ),
           ],
         ),
       ),
