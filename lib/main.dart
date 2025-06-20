@@ -1,24 +1,40 @@
 import 'package:flutter/material.dart';
-import 'views/home_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'router/router.dart';
+import 'features/home/data/models/game_model.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(GameCatalogApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(GameModelAdapter());
+  Hive.registerAdapter(GenreAdapter());
+  Hive.registerAdapter(PlatformEntryAdapter());
+  Hive.registerAdapter(PlatformInfoAdapter());
+  await Hive.openBox<GameModel>('favorites');
+
+  await dotenv.load(fileName: ".env");
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(const ProviderScope(child: GameCatalogApp()));
 }
 
-class GameCatalogApp extends StatelessWidget {
+class GameCatalogApp extends ConsumerWidget {
   const GameCatalogApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Game Catalog',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Color(0xFF121212),
-        cardColor: Color(0xFF2A2A2A),
-        primaryColor: Colors.deepPurple,
-        textTheme: TextTheme(bodyMedium: TextStyle(color: Colors.white70)),
-      ),
-      home: HomePage(),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+    return MaterialApp.router(
+      title: 'Catálogo de Jogos',
+      theme: ThemeData.dark(useMaterial3: true),
+      routerConfig: router,
     );
   }
 }

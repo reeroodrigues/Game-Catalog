@@ -1,39 +1,66 @@
-name: catalogo_de_jogos
-description: "A new Flutter project."
+name: game_catalog_app
+description: Um catálogo de jogos bonito e responsivo feito em Flutter.
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
+  cupertino_icons: ^1.0.6
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.2
+  shimmer: ^3.0.0
+  firebase_core: ^2.30.0
+  firebase_auth: ^4.17.4
+  cloud_firestore: ^4.9.0
+  flutter_rating_bar: ^4.0.0
+
+  # Gerenciamento de estado
+  flutter_riverpod: ^2.5.1
+
+  # Chamadas HTTP / API
+  dio: ^5.4.1
+  retrofit: ^4.1.0
+  json_annotation: ^4.8.1
+
+  # Cache de imagens
+  cached_network_image: ^3.3.1
+
+  # Responsividade
+  flutter_screenutil: ^5.9.0
+
+  # Armazenamento local
   shared_preferences: ^2.2.2
-  cached_network_image: ^3.4.0
+
+  # Navegação moderna
+  go_router: ^13.2.1
+
+  # Utilitários
+  flutter_dotenv: ^5.1.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^3.0.1
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.9
+  retrofit_generator: ^8.1.0
+  json_serializable: ^6.7.1
   flutter_launcher_icons: ^0.13.1
-  flutter_native_splash: ^2.3.5
 
-flutter_launcher_icons:
+flutter_icons:
   android: true
   ios: true
   image_path: "assets/icon/game.png"
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true
-
   assets:
+    - .env
     - assets/icon/game.png
-
-flutter_native_splash:
-  color: "#121212"
-  image: assets/icon/game.png
-  android: true
-  ios: true
-  fullscreen: true
