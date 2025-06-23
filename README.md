@@ -6,7 +6,7 @@ Um aplicativo Flutter completo para explorar, favoritar e avaliar jogos. Desenvo
 
 ## 📱 Demonstração
 
-![WhatsApp Image 2025-06-06 at 17 14 32_e200455e](https://github.com/user-attachments/assets/940e955d-52e8-447a-9a54-7efbcffb1a6c)
+https://github.com/user-attachments/assets/aebca9ae-5088-4ac5-b830-4023be28518e
 
 ---
 
